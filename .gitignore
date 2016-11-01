@@ -1,0 +1,6 @@
+twi.config
+*.*~
+__pycache__
+*.pyc
+*.pyo
+.idea
