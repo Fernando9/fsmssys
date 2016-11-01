@@ -6,7 +6,7 @@ import os
 import configparser
 
 config = configparser.ConfigParser()
-config.read('twi.config')
+config.read('twiexample.config')
 account_sid = config['DEFAULT']['account_sid']
 auth_token = config['DEFAULT']['auth_token']
 from_ = config['DEFAULT']['from_']
