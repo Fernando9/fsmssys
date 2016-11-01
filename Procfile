@@ -1,1 +1,1 @@
-web: gunicorn twilioplay:app
+web: gunicorn service:app
