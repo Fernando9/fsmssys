@@ -1,6 +1,7 @@
 from flask import Flask, request, abort, Response
 from twilio.rest import TwilioRestClient
 from twilio import TwilioRestException
+from flask_cors import CORS, cross_origin
 import json
 import os
 import configparser
@@ -11,8 +12,8 @@ account_sid = config['DEFAULT']['account_sid']
 auth_token = config['DEFAULT']['auth_token']
 from_ = config['DEFAULT']['from_']
 
-
 app = Flask(__name__)
+CORS(app, supports_credentials=True)
 
 @app.route('/')
 def api_route():
@@ -22,6 +23,7 @@ def api_route():
     js = json.dumps(data)
     resp = Response(js, status=200, mimetype='application/json')
     return resp
+
 
 @app.route('/sms', methods=['POST'])
 def send_message():
@@ -46,12 +48,9 @@ def send_message():
         resp = Response(jse, status=404, mimetype='application/json')
     return resp
 
+
 @app.route('/response', methods=['GET'])
 def reply_message():
     resp = twilio.twiml.Response()
     resp.message("Hello There!!!!")
     return str(resp)
-
-# if __name__ == "__main__":
-    # app.run(host='0.0.0.0')
-    # app.run(debug=True)
