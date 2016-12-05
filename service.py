@@ -2,6 +2,7 @@ from flask import Flask, request, abort, Response
 from twilio.rest import TwilioRestClient
 from twilio import TwilioRestException
 from flask_cors import CORS, cross_origin
+from flask.ext.cors import import CORS, cross_origin
 import json
 import os
 import configparser
@@ -13,9 +14,11 @@ auth_token = config['DEFAULT']['auth_token']
 from_ = config['DEFAULT']['from_']
 
 app = Flask(__name__)
-CORS(app)
+cors = CORS(app)
+app.config['CORS_HEADERS'] = "Content-Type"
 
 @app.route('/')
+@cross_origin()
 def api_route():
     data = {
         'Status':'Server is Running'
@@ -26,7 +29,7 @@ def api_route():
 
 
 @app.route('/sms', methods=['POST'])
-@cross_origin(allow_headers=['Content-Type'])
+@cross_origin()
 def send_message():
     data = request.get_json()
     if not request.json:
