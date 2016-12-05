@@ -26,6 +26,7 @@ def api_route():
 
 
 @app.route('/sms', methods=['POST'])
+@cross_origin()
 def send_message():
     data = request.get_json()
     if not request.json:
