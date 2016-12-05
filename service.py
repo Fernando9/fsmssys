@@ -2,7 +2,6 @@ from flask import Flask, request, abort, Response
 from twilio.rest import TwilioRestClient
 from twilio import TwilioRestException
 from flask_cors import CORS, cross_origin
-from flask.ext.cors import import CORS, cross_origin
 import json
 import os
 import configparser
