@@ -13,7 +13,7 @@ auth_token = config['DEFAULT']['auth_token']
 from_ = config['DEFAULT']['from_']
 
 app = Flask(__name__)
-CORS(app, supports_credentials=True)
+CORS(app)
 
 @app.route('/')
 def api_route():
