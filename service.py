@@ -53,6 +53,7 @@ def send_message():
 
 
 @app.route('/response', methods=['GET'])
+@cross_origin()
 def reply_message():
     resp = twilio.twiml.Response()
     resp.message("Hello There!!!!")
